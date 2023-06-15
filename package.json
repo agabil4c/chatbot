@@ -50,8 +50,6 @@
       "last 1 safari version"
     ]
   },
-  "allowedHosts": "all",
-  "proxy": "http://localhost:3001/api",
   "devDependencies": {
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.36",
