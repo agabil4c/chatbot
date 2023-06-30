@@ -2,7 +2,7 @@ import { put, takeLatest } from "redux-saga/effects";
 
 import { messagesLoaded } from "../actions";
 
-const fetchConversations = fetch("/api/conversations")
+const fetchConversations = fetch("http://localhost:3001/api/conversations")
   .then((response) => response.json())
   .then((user) => {
     const conversations = user;
@@ -16,7 +16,7 @@ fetchConversations.then((a) => {
   conversations.forEach((element) => {
     const id = element._id;
     const fetchConversationMessages = fetch(
-      `/api/conversations/conversation/${id}`
+      `http://localhost:3001/api/conversations/conversation/${id}`
     )
       .then((response) => response.json())
       .then((user) => {

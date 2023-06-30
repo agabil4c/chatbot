@@ -54,7 +54,7 @@ const ChatForm = ({
 
         try {
           await axios
-            .post(`/api/messages/${convId}`, message)
+            .post(`http://localhost:3001/api/messages/${convId}`, message)
             .then((response) => {
               const data = {
                 room: "room1",
