@@ -9,7 +9,7 @@ import http from "http";
 import { Server } from "socket.io";
 import Users from "./users.js";
 const app = express();
-
+const path = require("path");
 app.use(cors());
 const server = http.createServer(app);
 dotenv.config();
@@ -44,6 +44,12 @@ app.use((err, req, res, next) => {
     message: errorMessage,
     stack: err.stack,
   });
+});
+
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 const io = new Server(server, {
