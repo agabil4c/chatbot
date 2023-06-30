@@ -6,10 +6,11 @@ import cors from "cors";
 import conversationRoutes from "./routes/conversations.js";
 import messagesRoutes from "./routes/messages.js";
 import http from "http";
+import path from "path";
+import { fileURLToPath } from "url";
 import { Server } from "socket.io";
 import Users from "./users.js";
 const app = express();
-const path = require("path");
 app.use(cors());
 const server = http.createServer(app);
 dotenv.config();
@@ -46,11 +47,13 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.use(express.static(path.join(__dirname, "build")));
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+// app.use(express.static(path.join(__dirname, "build")));
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("/*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 const io = new Server(server, {
   cors: {

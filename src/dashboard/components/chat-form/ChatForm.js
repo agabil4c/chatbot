@@ -12,7 +12,12 @@ const adjustTextMessage = (textMessage) => {
   return textMessage.trim();
 };
 
-const ChatForm = ({ selectedConversation, onMessageSubmitted, socket, convId }) => {
+const ChatForm = ({
+  selectedConversation,
+  onMessageSubmitted,
+  socket,
+  convId,
+}) => {
   const [textMessage, setTextMessage] = useState("");
   const disableButton = isMessageEmpty(textMessage);
   let formContents = null;
@@ -49,7 +54,7 @@ const ChatForm = ({ selectedConversation, onMessageSubmitted, socket, convId }) 
 
         try {
           await axios
-            .post(`http://localhost:3001/api/messages/${convId}`, message)
+            .post(`/api/messages/${convId}`, message)
             .then((response) => {
               const data = {
                 room: "room1",

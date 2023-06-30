@@ -47,10 +47,7 @@ const Chat = (props) => {
     };
     try {
       await axios
-        .post(
-          `http://localhost:3001/api/messages/${convId}`,
-          conversationMessage
-        )
+        .post(`/api/messages/${convId}`, conversationMessage)
         .then((response) => {
           const data = {
             room: "room2",
