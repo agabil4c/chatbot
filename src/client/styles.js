@@ -5,13 +5,13 @@ export const styles = {
     // Border
     borderRadius: "50%",
     // Background
-    backgroundImage: `url(../dashboard/images/profiles/tp_small_tt.png)`,
+    backgroundImage: `url(./tp_small_tt.png)`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    backgroundSize: "84px",
+    backgroundSize: "70px",
     // Size
-    width: "84px",
-    height: "84px",
+    width: "70px",
+    height: "70px",
   },
   avatarHello: {
     // Position
@@ -31,11 +31,11 @@ export const styles = {
   supportWindow: {
     // Position
     position: "fixed",
-    bottom: "116px",
+    bottom: "100px",
     right: "24px",
     // Size
-    width: "420px",
-    height: "530px",
+    width: "410px",
+    height: "500px",
     maxWidth: "calc(100% - 48px)",
     maxHeight: "calc(100% - 48px)",
     backgroundColor: "white",
@@ -55,7 +55,7 @@ export const styles = {
   },
   stripe: {
     position: "relative",
-    top: "-45px",
+    top: "-44px",
     width: "100%",
     height: "308px",
     backgroundColor: "#7a39e0",
@@ -102,5 +102,12 @@ export const styles = {
   chatEngineWindow: {
     width: "100%",
     backgroundColor: "#fff",
+  },
+  messagesSection: {
+    minHeight: "70vh",
+    maxHeight: "70vh",
+    marginTop: "10px",
+    overflowY: "auto",
+    scrollBehavior: "smooth",
   },
 };

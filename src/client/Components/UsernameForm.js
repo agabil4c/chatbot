@@ -135,7 +135,7 @@ const UsernameForm = (props) => {
           style={{ position: "relative", width: "100%", top: "19.75%" }}
         >
           <input
-            placeholder="Enter your name please"
+            placeholder="Your name or agency name"
             onChange={(e) => setUsername(e.target.value)}
             style={styles.emailInput}
           />

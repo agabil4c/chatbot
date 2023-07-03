@@ -93,7 +93,7 @@ const Chat = (props) => {
     <div
       className="transition-5"
       style={{
-        ...styles.emailFormWindow,
+        ...styles.chatEngineWindow,
         ...{
           height: props.visible ? "100%" : "0px",
           zIndex: props.visible ? "100" : "0",
@@ -116,33 +116,40 @@ const Chat = (props) => {
             }}
           >
             <div
-              className=" bg-gray-100 dark:bg-gray-900"
+              className=" dark:bg-gray-900"
               style={{
+                display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 width: "100%",
-                height: "auto",
+                height: "inherit",
                 paddingTop: "16px",
                 paddingBottom: "16px",
                 marginTop: "8px",
                 marginBottom: "8px",
                 borderRadius: "12px",
+                backgroundColor: "#F3F4F6",
               }}
             >
               <div
-                className="space-y-4 scrolling-touch messagesSection scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2"
+                className="scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2"
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  padding: "12px",
-                  overflowY: "auto",
+                  ...styles.messagesSection,
+                  ...{
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "12px",
+                    overflowY: "auto",
+                    marginTop: "1rem",
+                    WebkitOverflowScrolling: "touch",
+                  },
                 }}
               >
                 <Messages messages={responses} />
               </div>
 
               <div
-                className=" border-gray-200 dark:border-gray-600 "
+                className=" dark:border-gray-600 "
                 style={{
                   display: "flex",
                   justifyContent: "center",
@@ -151,10 +158,11 @@ const Chat = (props) => {
                   paddingTop: "8px",
                   paddingBottom: "8px",
                   borderTopWidth: "2px",
+                  borderColor: "#E5E7EB",
                 }}
               >
                 <div
-                  className=" bg-white shadow-sm dark:bg-gray-800 lg:max-w-lg "
+                  className=" dark:bg-gray-800 lg:max-w-lg "
                   style={{
                     width: "100%",
                     paddingLeft: "8px",
@@ -162,6 +170,8 @@ const Chat = (props) => {
                     paddingTop: "8px",
                     paddingBottom: "8px",
                     borderRadius: "8px",
+                    backgroundColor: "#ffffff",
+                    boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
                   }}
                 >
                   <input
@@ -170,7 +180,22 @@ const Chat = (props) => {
                     onChange={handleMessageChange}
                     onKeyDown={handleSubmit}
                     placeholder="Enter your message here"
-                    className="block w-full py-2 pl-3 pr-3 text-sm placeholder-gray-500 bg-white border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-900 dark:text-white dark:placeholder-gray-100 focus:outline-none focus:text-gray-900 dark:focus:text-white focus:placeholder-gray-400 dark:focus:placeholder-white focus:ring-1 focus:ring-indigo-300 sm:text-sm"
+                    className=" dark:bg-gray-700 dark:border-gray-900 dark:text-white dark:placeholder-gray-100 focus:outline-none focus:text-gray-900 dark:focus:text-white focus:placeholder-gray-400 dark:focus:placeholder-white focus:ring-1 focus:ring-indigo-300 sm:text-sm"
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      paddingTop: "0.5rem",
+                      paddingBottom: "0.5rem",
+                      paddingRight: "0.75rem",
+                      paddingLeft: "0.75rem",
+                      fontSize: "1.125rem",
+                      lineHeight: "1.25rem",
+                      color: "#6B7280",
+                      backgroundColor: "#ffffff",
+                      borderWidth: "1px",
+                      borderRadius: "0.375rem",
+                      borderColor: "#D1D5DB",
+                    }}
                   />
                 </div>
               </div>

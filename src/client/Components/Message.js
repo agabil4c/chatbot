@@ -4,71 +4,109 @@ const Message = ({ message }) => {
   return (
     <>
       {message.isBot ? (
-        <div className="flex items-end justify-start">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "flex-start",
+          }}
+        >
           <div
-            className="
-                flex flex-col
-                space-y-2
-                text-xs
-                max-w-xs
-                mx-2
-                order-2
-                items-start
-                shadow-lg
-                rounded-lg
-                m-1
-               
-              "
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginTop: "0.5rem",
+              fontSize: "1.125rem",
+              lineHeight: "1rem",
+              maxWidth: "20rem",
+              marginLeft: "0.5rem",
+              marginRight: "0.5rem",
+              order: "2",
+              alignItems: "flex-start",
+              boxShadow:
+                "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+              borderRadius: "0.5rem",
+              margin: "0.25rem",
+            }}
           >
             <span
-              className="
-                    px-4
-                    py-2
-                   rounded-lg
-                    inline-block
-                    dark:bg-yellow-600
-                    dark:text-white
-                    bg-green-500
-                    text-white
-                  "
+              style={{
+                paddingLeft: "1rem",
+                paddingRight: "1rem",
+                paddingTop: "0.5rem",
+                paddingBottom: "0.5rem",
+                borderRadius: "0.5rem",
+                display: "inline-block",
+                color: "#ffffff",
+                backgroundColor: "#10B981",
+              }}
+              className="dark:bg-yellow-600 dark:text-white"
             >
               {message.text}
             </span>
           </div>
-          <i className="fas fa-desktop w-6 h-6 dark:text-white  rounded-full order-1" />
+          <i
+            className="fas fa-desktop dark:text-white"
+            style={{
+              width: "1.5rem",
+              height: "1.5rem",
+              order: "1",
+              borderRadius: "9999px",
+            }}
+          />
         </div>
       ) : (
-        <div className="flex items-end pt-2 justify-end">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+            paddingTop: "0.5rem",
+            justifyContent: "flex-end",
+          }}
+        >
           <div
-            className="
-                flex flex-col
-                space-y-2
-                text-xs
-                max-w-xs
-                mx-2
-                order-1
-                items-end
-                shadow-lg
-                rounded-lg
-                m-1
-              "
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginTop: "0.625rem",
+              fontSize: "1.125rem",
+              lineHeight: "1rem",
+              maxWidth: "20rem",
+              marginLeft: "0.5rem",
+              marginRight: "0.5rem",
+              order: "1",
+              alignItems: "flex-end",
+              boxShadow:
+                "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+              borderRadius: "0.5rem",
+              margin: "0.25rem",
+            }}
           >
             <span
-              className="
-                    px-4
-                    py-2
-                    rounded-lg
-                    inline-block
-                    dark:bg-blue-600
-                    dark:text-white
-                    bg-indigo-500
-                    text-white
-                  "
+              style={{
+                paddingLeft: "1rem",
+                paddingRight: "1rem",
+                paddingTop: "0.5rem",
+                paddingBottom: "0.5rem",
+                borderRadius: "0.5rem",
+                display: "inline-block",
+                backgroundColor: "#6366F1",
+                color: "#ffffff",
+              }}
+              className="dark:bg-blue-600 dark:text-white"
             >
               {message.text}
             </span>
           </div>
-          <i className="fas fa-user w-6 h-6 dark:text-white  rounded-full order-1" />
+          <i
+            className="fas fa-user dark:text-white"
+            style={{
+              borderRadius: "9999px",
+              order: "1",
+              width: "1.5rem",
+              height: "1.5rem",
+            }}
+          />
         </div>
       )}
     </>
