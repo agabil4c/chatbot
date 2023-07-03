@@ -68,7 +68,7 @@ const Message = ({ message }) => {
             style={{
               display: "flex",
               flexDirection: "column",
-              marginTop: "0.625rem",
+              marginTop: "0.5rem",
               fontSize: "1.125rem",
               lineHeight: "1rem",
               maxWidth: "20rem",
