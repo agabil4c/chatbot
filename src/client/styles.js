@@ -35,7 +35,7 @@ export const styles = {
     right: "24px",
     // Size
     width: "400px",
-    height: "490px",
+    height: "470px",
     maxWidth: "calc(100% - 48px)",
     maxHeight: "calc(100% - 48px)",
     backgroundColor: "white",

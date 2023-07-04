@@ -6,8 +6,6 @@ import cors from "cors";
 import conversationRoutes from "./routes/conversations.js";
 import messagesRoutes from "./routes/messages.js";
 import http from "http";
-import path from "path";
-import { fileURLToPath } from "url";
 import { Server } from "socket.io";
 import Users from "./users.js";
 const app = express();

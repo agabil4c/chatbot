@@ -5,7 +5,7 @@ import UsernameForm from "./UsernameForm";
 import Chat from "./Chat";
 import io from "socket.io-client";
 
-const socket = io.connect("/api");
+const socket = io.connect();
 const SupportWindow = (props) => {
   const [user, setUser] = useState(null);
   const [room, setRoom] = useState(null);
