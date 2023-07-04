@@ -2,7 +2,7 @@ import { put, takeEvery } from "redux-saga/effects";
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-const fetchConversations = fetch("http://localhost:3001/api/conversations")
+const fetchConversations = fetch("/api/conversations")
   .then((response) => response.json())
   .then((user) => {
     const conversations = user;

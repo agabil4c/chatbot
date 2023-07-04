@@ -24,7 +24,7 @@ const UsernameForm = (props) => {
       };
       try {
         await axios
-          .post("http://localhost:3001/api/conversations", conversation)
+          .post("/api/conversations", conversation)
           .then((response) => {
             const convID = response.data["_id"];
             const data = {
@@ -45,7 +45,7 @@ const UsernameForm = (props) => {
               };
               try {
                 await axios.post(
-                  `http://localhost:3001/api/messages/${convID}`,
+                  `/api/messages/${convID}`,
                   conversationMessage
                 );
                 // .then((response) => {
