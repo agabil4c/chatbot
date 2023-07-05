@@ -55,7 +55,7 @@ app.use((err, req, res, next) => {
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "http://localhost:3005",
     methods: ["GET", "POST"],
   },
 });
