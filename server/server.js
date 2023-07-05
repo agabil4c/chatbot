@@ -55,7 +55,7 @@ app.use((err, req, res, next) => {
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3005",
+    origin: "http://167.172.160.113/",
     methods: ["GET", "POST"],
   },
 });
@@ -99,5 +99,6 @@ io.on("connection", (socket) => {
 
 server.listen(3001, () => {
   connect();
+
   console.log("Server running on port 3001");
 });

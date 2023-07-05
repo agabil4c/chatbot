@@ -2,7 +2,7 @@ import React from "react";
 import io from "socket.io-client";
 import ChatShell from "./containers/shell/ChatShell";
 
-const socket = io.connect();
+const socket = io.connect("http://167.172.160.113/api");
 
 const Dashboard = () => {
   const data = {
