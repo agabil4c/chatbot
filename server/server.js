@@ -61,6 +61,7 @@ const io = new Server(server, {
 });
 let users = new Users();
 io.on("connection", (socket) => {
+  console.log("check 1", socket.connected);
   socket.on("join_room", (data, callback) => {
     const { error, user } = users.addUser(data.id, data.name, data.room);
     console.log(user);
