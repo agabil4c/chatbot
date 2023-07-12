@@ -52,13 +52,13 @@ app.use((err, req, res, next) => {
 // app.get("/*", function (req, res) {
 //   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
-
-const io = new Server(server, {
-  cors: {
-    origin: "http://167.172.160.113/",
-    methods: ["GET", "POST"],
-  },
-});
+const options = {
+  cors: true,
+  origins: ["http://167.172.160.113"],
+  "force new connection": true,
+  methods: ["GET", "POST"],
+};
+const io = new Server(server, options);
 let users = new Users();
 io.on("connection", (socket) => {
   console.log("check 1", socket.connected);
