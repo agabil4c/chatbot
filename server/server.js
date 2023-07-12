@@ -54,7 +54,7 @@ app.use((err, req, res, next) => {
 // });
 const options = {
   cors: true,
-  origins: ["http://167.172.160.113"],
+  origins: ["http://localhost:3005"],
   "force new connection": true,
   methods: ["GET", "POST"],
 };

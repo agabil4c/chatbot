@@ -5,12 +5,12 @@ import UsernameForm from "./UsernameForm";
 import Chat from "./Chat";
 import io from "socket.io-client";
 
-//const socket = io.connect("http://localhost:3001");
-const ENDPOINT = "http://167.172.160.113/api";
-const socket = io(ENDPOINT, {
-  forceNew: true,
-  origins: "http://167.172.160.113/api",
-});
+const socket = io.connect("http://localhost:3001");
+// const ENDPOINT = "http://localhost:3001";
+// const socket = io(ENDPOINT, {
+//   forceNew: true,
+//   origins: "http://localhost:3001",
+// });
 
 const SupportWindow = (props) => {
   const [user, setUser] = useState(null);
