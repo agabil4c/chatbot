@@ -1,7 +1,6 @@
 const initialState = {
   conversations: [],
   selectedConversation: {},
-  messageDetails: {},
 };
 
 initialState.selectedConversation = initialState.conversations[1];
@@ -83,10 +82,10 @@ const conversationsReducer = (state = initialState, action) => {
 
     case "NEW_CONVERSATION_ADDED": {
       const newState = { ...state };
-      const length = newState.conversations.length;
+      //const length = newState.conversations.length;
 
       newState.conversations.unshift({
-        id: length + 1,
+        _id: action.payload.convID,
         imageUrl: require("../../images/profiles/daryl.png"),
         imageAlt: action.payload.name,
         title: action.payload.name,
@@ -97,7 +96,7 @@ const conversationsReducer = (state = initialState, action) => {
         latestMessageText: action.payload.text,
         messages: [],
       });
-
+      //console.log(newState);
       // yield put(
       //   newConversationMessageAdded(length + 1, action.payload.text)
       // );

@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import './NewConversation.scss';
+import "./NewConversation.scss";
+import RefreshIcon from "../../controls/icons/refresh-icon/RefreshIcon";
 
-const NewConversation = () => {
-    return (
-        <div id="new-message-container">
-            <button>+</button>
-        </div>
-    );
-}
+const NewConversation = ({ handleClick }) => {
+  return (
+    <div onClick={handleClick} id="new-message-container">
+      <RefreshIcon />
+    </div>
+  );
+};
 
 export default NewConversation;

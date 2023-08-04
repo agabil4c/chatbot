@@ -5,16 +5,16 @@ import UsernameForm from "./UsernameForm";
 import Chat from "./Chat";
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:3001");
-// const ENDPOINT = "http://localhost:3001";
-// const socket = io(ENDPOINT, {
-//   forceNew: true,
-//   origins: "http://localhost:3001",
-// });
-
+//const socket = io.connect("http://localhost:3001");
+let socket;
 const SupportWindow = (props) => {
   const [user, setUser] = useState(null);
   const [room, setRoom] = useState(null);
+  const ENDPOINT = "http://localhost:3001";
+  socket = io(ENDPOINT, {
+    forceNew: true,
+    origins: "http://localhost:3001",
+  });
   let room_ = "room1";
   useEffect(() => {
     setRoom(room_);

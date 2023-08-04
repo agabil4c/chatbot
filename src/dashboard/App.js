@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import io from "socket.io-client";
 import ChatShell from "./containers/shell/ChatShell";
 
-const socket = io.connect("http://localhost:3001");
-// const ENDPOINT = "http://localhost:3001";
-// const socket = io(ENDPOINT, {
-//   forceNew: true,
-//   origins: "http://localhost:3001",
-// });
+//const socket = io.connect("http://localhost:3001");
+let socket;
 const Dashboard = () => {
-  const data = {
-    room: "room2",
-  };
-  socket.emit("join_room", data, (error) => {
-    if (error) {
-      alert(error);
-    }
+  const ENDPOINT = "http://localhost:3001";
+  socket = io(ENDPOINT, {
+    forceNew: true,
+    origins: "http://localhost:3001",
   });
+
+  useEffect(() => {
+    const data = {
+      room: "room2",
+    };
+    socket.emit("join_room", data, (error) => {
+      if (error) {
+        alert(error);
+      }
+    });
+  });
+
   return (
     <div className="chatshell">
       <div className="chatshell_root">

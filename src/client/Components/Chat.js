@@ -8,6 +8,7 @@ const Chat = (props) => {
   const [convId, setconvId] = useState("");
   const [currentMessage, setCurrentMessage] = useState("");
   const [showChat, setShowChat] = useState(false);
+  const [receiverId, setreceiverId] = useState("");
 
   useEffect(() => {
     if (props.visible) {
@@ -24,7 +25,7 @@ const Chat = (props) => {
         isBot: true,
       };
       setconvId(message.id);
-
+      setreceiverId("");
       setResponses((responses) => [...responses, responseData]);
     });
 
@@ -34,6 +35,7 @@ const Chat = (props) => {
         text: data.message,
         isBot: true,
       };
+      setreceiverId(data.sender_id);
       setResponses((responses) => [...responses, responseData]);
     });
   }, [props.socket]);
@@ -47,12 +49,17 @@ const Chat = (props) => {
     };
     try {
       await axios
-        .post(`/api/messages/${convId}`, conversationMessage)
+        .post(
+          `http://localhost:3001/api/messages/${convId}`,
+          conversationMessage
+        )
         .then((response) => {
           const data = {
             room: "room2",
             author: convId,
             message: message,
+            sender_id: props.socket.id,
+            receiver_id: receiverId,
             time:
               new Date(Date.now()).getHours() +
               ":" +

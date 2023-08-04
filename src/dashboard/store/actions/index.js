@@ -52,11 +52,19 @@ export const postMessages = (conversationId, message) => ({
   },
 });
 
-export const newConversationAdded = (name, text) => ({
+export const newConversationAdded = (name, text, convID) => ({
   type: "NEW_CONVERSATION_ADDED",
   payload: {
     name,
     text,
+    convID,
+  },
+});
+
+export const newConversationMessagesLoaded = (convID) => ({
+  type: "NEW_CONVERSATION_MESSAGES_LOADED",
+  payload: {
+    convID,
   },
 });
 

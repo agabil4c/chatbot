@@ -17,6 +17,7 @@ const ChatForm = ({
   onMessageSubmitted,
   socket,
   convId,
+  receiverId,
 }) => {
   const [textMessage, setTextMessage] = useState("");
   const disableButton = isMessageEmpty(textMessage);
@@ -54,11 +55,13 @@ const ChatForm = ({
 
         try {
           await axios
-            .post(`/api/messages/${convId}`, message)
+            .post(`http://localhost:3001/api/messages/${convId}`, message)
             .then((response) => {
               const data = {
                 room: "room1",
                 message: textMessage,
+                sender_id: socket.id,
+                receiver_id: receiverId,
                 time:
                   new Date(Date.now()).getHours() +
                   ":" +

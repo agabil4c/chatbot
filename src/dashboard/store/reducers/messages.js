@@ -28,7 +28,7 @@ const messagesReducer = (state = initialState, action) => {
       const newMessageDetails = { ...state.messageDetails };
 
       newMessageDetails[conversationId] = newConversationMapEntry;
-
+      //console.log(newMessageDetails);
       return { messageDetails: newMessageDetails };
     }
     case "POST_MESSAGE": {
@@ -48,6 +48,26 @@ const messagesReducer = (state = initialState, action) => {
         messageText: action.payload.text,
         createdAt: new Date(),
         isMyMessage: false,
+      });
+
+      return newState;
+    }
+    case "NEW_CONVERSATION_MESSAGES_LOADED": {
+      const newState = { ...state };
+      const newMessageDetails = { ...newState.messageDetails };
+      //console.log(messageDetails);
+      const fetchConversationMessages = fetch(
+        `http://localhost:3001/api/conversations/conversation/${action.payload.convID}`
+      )
+        .then((response) => response.json())
+        .then((user) => {
+          const messages = user;
+          //console.log(messages);
+          return messages;
+        });
+      fetchConversationMessages.then((a) => {
+        //console.log(a);
+        newMessageDetails[action.payload.convID] = a;
       });
 
       return newState;

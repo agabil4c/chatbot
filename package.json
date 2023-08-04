@@ -29,11 +29,15 @@
     "socket.io-client": "^4.6.1",
     "web-vitals": "^1.0.1"
   },
+  "resolutions": {
+      "react-error-overlay": "6.0.9"
+  },
   "scripts": {
-    "start": " nodemon server.js ",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "preinstall": "npx npm-force-resolutions"
   },
   "eslintConfig": {
     "extends": [
@@ -57,7 +61,8 @@
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.36",
     "sass": "^1.62.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.4"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.4",
+    "react-error-overlay": "6.0.9"
   },
   "proxy": "http://localhost:3001"
 }

@@ -6,6 +6,7 @@ import {
   conversationDeleted,
   conversationsRequested,
   newConversationAdded,
+  newConversationMessagesLoaded,
   newConversationMessageAdded,
   postMessages,
 } from "../../store/actions";
@@ -27,16 +28,22 @@ const ChatShell = ({
   onDeleteConversation,
   loadConversations,
   newConversations,
+  newConversationsMessagesLoaded,
   newConversationMessage,
   socket,
 }) => {
   const [convId, setconvId] = useState("");
+  const [receiverId, setreceiverId] = useState("");
   useEffect(() => {
     loadConversations();
   }, [loadConversations]);
+
+  const handleClick = () => {
+    window.location.reload();
+  };
   let conversationContent = (
     <>
-      <NoConversations></NoConversations>
+      <NoConversations handleClick={handleClick}></NoConversations>
     </>
   );
 
@@ -50,16 +57,31 @@ const ChatShell = ({
   useEffect(() => {
     socket.on("roomData", (data) => {
       const text = data.text;
+      console.log(data);
       data.users.forEach(function (user) {
-        newConversations(user, text);
+        newConversations(user, text, data.id);
+        window.location.reload();
+        //loadConversations();
+        //newConversationsMessagesLoaded(data.id);
       });
     });
     socket.on("receive_message", (data) => {
       //console.log(data);
       setconvId(data.author);
+      setreceiverId(data.sender_id);
       newConversationMessage(data.author, data.message);
     });
-  }, [socket, newConversations, newConversationMessage]);
+    socket.on("admin_message", (data) => {
+      //console.log(data);
+      setconvId(data.author);
+      newConversationMessage(data.author, data.text);
+    });
+  }, [
+    socket,
+    newConversations,
+    newConversationsMessagesLoaded,
+    newConversationMessage,
+  ]);
 
   return (
     <div id="chat-container">
@@ -69,7 +91,10 @@ const ChatShell = ({
         conversations={conversations}
         selectedConversation={selectedConversation}
       />
-      <NewConversation />
+      <NewConversation
+        handleClick={handleClick}
+        conversations={conversations}
+      />
       <ChatTitle
         selectedConversation={selectedConversation}
         onDeleteConversation={onDeleteConversation}
@@ -80,6 +105,7 @@ const ChatShell = ({
         onMessageSubmitted={onMessageSubmitted}
         socket={socket}
         convId={convId}
+        receiverId={receiverId}
       />
     </div>
   );
@@ -106,8 +132,11 @@ const mapDispatchToProps = (dispatch) => ({
   loadConversations: () => {
     dispatch(conversationsRequested());
   },
-  newConversations: (name, text) => {
-    dispatch(newConversationAdded(name, text));
+  newConversations: (name, text, convID) => {
+    dispatch(newConversationAdded(name, text, convID));
+  },
+  newConversationsMessagesLoaded: (convID) => {
+    dispatch(newConversationMessagesLoaded(convID));
   },
   newConversationMessage: (conversationId, message) => {
     dispatch(newConversationMessageAdded(conversationId, message));

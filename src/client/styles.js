@@ -5,7 +5,7 @@ export const styles = {
     // Border
     borderRadius: "50%",
     // Background
-    backgroundImage: `url(./tp_small_tt.png)`,
+    backgroundImage: ``,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "70px",

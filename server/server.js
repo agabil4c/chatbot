@@ -9,13 +9,18 @@ import http from "http";
 import { Server } from "socket.io";
 import Users from "./users.js";
 const app = express();
-app.use(cors());
 const server = http.createServer(app);
+
+//app.use(cors());
+
 dotenv.config();
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO);
+    await mongoose.connect(process.env.MONGO, {
+      minPoolSize: 100,
+      maxPoolSize: 1000,
+    });
     console.log("Connected to mongoDB.");
   } catch (error) {
     throw error;
@@ -54,14 +59,14 @@ app.use((err, req, res, next) => {
 // });
 const options = {
   cors: true,
-  origins: ["http://localhost:3005"],
-  "force new connection": true,
+  origins: ["http://localhost:3000"],
   methods: ["GET", "POST"],
 };
+// const io = new Server(server, options);
 const io = new Server(server, options);
 let users = new Users();
 io.on("connection", (socket) => {
-  console.log("check 1", socket.connected);
+  //console.log("check 1", socket.connected);
   socket.on("join_room", (data, callback) => {
     const { error, user } = users.addUser(data.id, data.name, data.room);
     console.log(user);
@@ -78,12 +83,21 @@ io.on("connection", (socket) => {
       room: user.room,
       users: users.getUsersInRoom(user.room),
       text: `Have joined the chatroom.`,
+      id: data.id,
     });
     callback();
   });
 
   socket.on("send_message", (data) => {
-    socket.to(data.room).emit("receive_message", data);
+    console.log("recevier" + socket.id);
+
+    //socket.to(socket.id).emit("receive_message", data);
+    if (data.receiver_id === "") {
+      socket.to(data.room).emit("receive_message", data);
+    } else {
+      console.log("recevier" + data.receiver_id);
+      io.to(data.receiver_id).emit("receive_message", data);
+    }
   });
 
   socket.on("disconnect", () => {
@@ -97,7 +111,7 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
+server.listen(process.env.PORT || 3001, () => {
   connect();
 
   console.log("Server running on port 3001");
